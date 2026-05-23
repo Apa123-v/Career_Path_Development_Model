@@ -1,0 +1,297 @@
+# 🚀 AI Career Vision & Clarity Roadmap Generator
+
+An AI-powered roadmap generation platform that transforms user career goals, skills, urgency, and personal context into a structured **7-stage clarity progression system**.
+
+The platform uses a secure FastAPI backend, strict Pydantic validation layers, AI prompt orchestration, and a dynamic React frontend with milestone progression visualization.
+
+
+# 🏗️ System Architecture
+
+## Workflow Overview
+
+### 1️⃣ User Input Layer
+The frontend collects:
+- Name
+- Current Role
+- Target Role
+- Urgency
+- Skills
+- Preferred Language
+- Personal Story
+
+Users can also trigger prebuilt testing presets.
+
+---
+
+### 2️⃣ Validation Layer
+FastAPI routes the payload through strict Pydantic schema validation to ensure:
+- Type safety
+- Structured inputs
+- Crash prevention
+- Stable API execution
+
+---
+
+### 3️⃣ AI Orchestration Layer
+Validated payloads are processed inside `generator.py`.
+
+The orchestration engine:
+- Converts inputs into structured prompts
+- Generates a 7-stage roadmap
+- Enforces strict JSON-safe formatting
+- Prevents malformed responses
+
+---
+
+### 4️⃣ Response Parsing
+The generated AI response is:
+- Sanitized
+- Parsed into strict JSON arrays
+- Wrapped into milestone-safe packets
+
+---
+
+### 5️⃣ Frontend Rendering
+React dynamically renders milestones with:
+- Blur-lock visibility system
+- Progressive roadmap unlocking
+- Interactive milestone popups
+- Safe fallback rendering loops
+
+---
+
+# 💻 Backend Architecture
+
+## 📁 `main.py` / `server.py`
+
+Core backend controller handling:
+- API routes
+- Request orchestration
+- Middleware configuration
+- AI pipeline execution
+
+### Features
+- CORS middleware support for Vite
+- Main API route:
+```http
+POST /api/generate
+```
+
+---
+
+## 📁 `schema.py`
+
+Contains strict Pydantic validation models.
+
+### `VisionProfile`
+Handles contextual variables like:
+- current_life
+- main_blocker
+- vision_12mo
+- top_motivation
+
+### `UserRequestPayload`
+Validates:
+- urgency_months
+- skills array
+- icp_type
+- structured request inputs
+
+### `MilestoneResponse`
+Defines safe outbound response schema with fallback values:
+
+```python
+scenario_count = 0
+assessment_count = 0
+mock_interview_count = 0
+```
+
+Also manages:
+```python
+blur_level = 0 → Fully visible
+blur_level = 3 → Fully locked/blurred
+```
+
+---
+
+## 📁 `generator.py`
+
+AI prompt orchestration engine responsible for:
+- Prompt construction
+- Structured roadmap generation
+- JSON-safe response formatting
+- Illegal character prevention
+- Stable milestone packet generation
+
+---
+
+## 📁 `EDGE_TEST_LOG.md`
+
+Comprehensive edge-case validation log containing:
+- Broken state simulations
+- Validation failure tracking
+- AI response stress testing
+- Rendering edge-case checks
+
+---
+
+## 📁 `get-pip.py`
+
+Bootstrap utility script used to provision `pip`
+on deployment systems where it is missing.
+
+---
+
+# ⚛️ Frontend Architecture
+
+## 📁 `src/App.jsx`
+
+Main frontend orchestration layer handling:
+- State management
+- API communication
+- Dynamic rendering
+- Modal interactions
+- Milestone visibility logic
+
+
+## 🧪 Preset Testing Profiles
+
+Preloaded simulation datasets for testing various user personas.
+
+### Example Presets
+- Riya Sharma → High-wage growth track
+- Arjun Yadav → Hindi low-wage progression track
+
+Used for:
+- Edge testing
+- UX validation
+- AI consistency testing
+
+---
+
+## 🛡️ Safe Rendering System
+
+Frontend safety layers ensure malformed AI outputs never crash the UI.
+
+### Protection Mechanisms
+- Null-safe rendering
+- Integer fallback wrapping
+- Defensive iteration loops
+- Safe milestone mapping
+
+---
+
+# 🎨 Styling System
+
+## 📁 `src/index.css`
+
+Built using Tailwind CSS with a custom dark theme.
+
+### Theme Base
+```css
+bg-slate-950
+```
+
+### UI Features
+- Dynamic blur visibility
+- Interactive scaling
+- Locked milestone effects
+- Progressive roadmap visualization
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+- React.js
+- Vite
+- Tailwind CSS
+
+## Backend
+- Python
+- FastAPI
+- Uvicorn
+- Pydantic
+
+## Icons
+- Lucide React
+
+## State Management
+- React Hooks (`useState`)
+
+---
+
+# 🚀 Installation & Setup
+
+## 1️⃣ Clone Repository
+
+```bash
+git clone <your-repo-url>
+cd <project-folder>
+```
+
+---
+
+## 2️⃣ Backend Setup
+
+```bash
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+Backend runs at:
+```bash
+http://127.0.0.1:8000
+```
+
+---
+
+## 3️⃣ Frontend Setup
+
+```bash
+npm install
+npm run dev
+```
+
+Frontend runs at:
+```bash
+http://localhost:5173
+```
+
+---
+
+# 📡 API Endpoint
+
+## Generate Career Roadmap
+
+```http
+POST /api/generate
+```
+
+### Request Body Example
+
+```json
+{
+  "name": "Aman",
+  "current_role": "Student",
+  "target_role": "AI Engineer",
+  "urgency_months": 6,
+  "skills": ["Python", "React"],
+  "language": "English",
+  "story": "Want to transition into AI development."
+}
+```
+
+---
+
+# 🔒 Safety & Stability Highlights
+
+- Strict schema validation
+- Safe JSON parsing
+- AI response sanitization
+- Defensive frontend rendering
+- Blur-based progression gating
+- Edge-case crash prevention
+- Stable fallback value injection
+
+---
